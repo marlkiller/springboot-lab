@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- https://juejin.cn/post/7200549600590282789#heading-4 -->
 <!-- https://zhuanlan.zhihu.com/p/555185411 -->
+<!-- https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#actuator.loggers -->
 
 
 <!-- 日志级别从低到高分为TRACE < DEBUG < INFO < WARN < ERROR < FATAL，如果设置为WARN，则低于WARN的信息都不会输出 -->
