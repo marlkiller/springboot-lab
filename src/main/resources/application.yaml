@@ -1,0 +1,44 @@
+# java -jar myapp.jar --debug
+# 默认情况下，记录ERROR级、WARN级和INFO级消息。您还可以通过使用--debug标志启动应用程序来启用“调试”模式
+# 您还可以在 application.yaml 中指定 debug=true。
+# https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#features.logging
+# debug: true
+
+
+spring:
+  profiles:
+    # java -jar app.jar --spring.profiles.active=prod
+    # jar包命令行高于虚拟机参数指定高于yaml配置参数指定
+    active: prod
+server:
+  port: 8080
+dev:
+  config:
+    level: 100
+
+
+logging:
+  # https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#features.logging.custom-log-configuration
+  # 二者不能同时使用，如若同时使用，则只有 logging.file 生效
+  # logging.file.name or logging.file.path
+  #  file:
+  #    name: app.log
+  #    path: ./logs
+  #  level:
+  #    root: info
+  #    com: 
+  #      example: info
+  # file表示项目路径: /    
+  # classpath表示资源路径: src/main/resources/
+  config: classpath:logback-spring-full.xml
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+---
+spring:
+  config:
+    activate:
+      on-profile: prod

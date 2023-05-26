@@ -1,0 +1,13 @@
+
+spring:
+  # 启用devtools，无论用于启动应用程序的类加载器如何，
+  # 请设置-Dspring.devtools.restart.enabled=true系统属性
+  devtools:
+    restart:
+      enabled: true
+      # 触发实时重新加载 过滤
+      exclude: 
+        - static/**,
+        - public/**
+
+  

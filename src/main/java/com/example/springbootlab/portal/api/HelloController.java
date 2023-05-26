@@ -3,6 +3,9 @@ package com.example.springbootlab.portal.api;
 import com.example.springbootlab.common.config.MyProperties;
 import com.example.springbootlab.common.vo.Greeting;
 import jakarta.annotation.Resource;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,12 +19,37 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 @RestController
 public class HelloController {
+    private static final Log logger = LogFactory.getLog(HelloController.class);
 
     @Resource
     private MyProperties myProperties;
 
+    @Value(value = "${spring.config.activate.on-profile}")
+    private String profile;
+
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
+
+    /**
+     * curl --location 'http://127.0.0.1:8080/greeting?name=123'
+     */
+    @GetMapping("/env")
+    public String env() {
+        /* @GetMapping/@PostMapping/@PutMapping/@DeleteMapping
+        这些注解都是@RequestMapping的简化版，用于标记GET/POST/PUT/DELETE请求映射。
+        可以通过这些注解来更方便地定义不同类型的请求映射。 */
+        if (logger.isDebugEnabled()) {
+            logger.debug("this is debug log");
+            // 不过还有最好的写法，使用占位符：
+            // Object entry = new SomeObject(); 
+            // logger.debug("The entry is {}.", entry);
+        }
+
+        logger.info("this is info log");
+        logger.warn("this is warn log");
+        logger.error("this is error log");
+        return profile;
+    }
 
     /**
      * curl --location 'http://127.0.0.1:8080/greeting?name=123'
