@@ -57,9 +57,9 @@
                 <!-- 如果您想使用某些远程开发工具功能，您需要将其包含在内。
                     使用Maven插件时，将 excludeDevtools属性设置为false 
                 -->
-                <configuration>
-                    <excludeDevtools>false</excludeDevtools>
-                </configuration>
+                <!-- <configuration> -->
+                <!--     <excludeDevtools>false</excludeDevtools> -->
+                <!-- </configuration> -->
             </plugin>
         </plugins>
     </build>
