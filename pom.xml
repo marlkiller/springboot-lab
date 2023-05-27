@@ -17,6 +17,7 @@
         <java.version>20</java.version>
     </properties>
     <dependencies>
+        <!-- mvn dependency:tree -->
         <!-- Provides transitive vulnerable dependency maven:org.yaml:snakeyaml:1.33 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
