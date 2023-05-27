@@ -1,15 +1,15 @@
 package com.example.springbootlab.portal.api;
 
 import com.example.springbootlab.common.config.MyProperties;
+import com.example.springbootlab.common.util.JSONConvertUtils;
 import com.example.springbootlab.common.vo.Greeting;
 import jakarta.annotation.Resource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -88,11 +88,19 @@ public class HelloController {
      * consumes：指定处理请求的提交内容类型（Content-Type），例如application/json, text/html;
      * produces: 指定返回的内容类型，仅当request请求头中的(Accept)类型中包含该指定类型才返回
      */
-    @PostMapping(value = "/greeting/v4", consumes = {"text/*", MediaType.IMAGE_JPEG_VALUE})
+    // @PostMapping(value = "/greeting/v4", consumes = {"text/*", MediaType.IMAGE_JPEG_VALUE})
     // @PostMapping(value = "/greeting/v4", produces = {"text/plain;charset=UTF-8"})
-    // @PostMapping(value = "/greeting/v4")
-    public Map greetingV4() {
-        return new HashMap();
+    @PostMapping(value = "/greeting/v4")
+    public String greetingV4() {
+        String jsonString = """
+                {
+                    "id":123,
+                    "content":"content_val"
+                }
+                """;
+
+        Greeting jsonObject = JSONConvertUtils.asJSONObject(jsonString, Greeting.class);
+        return JSONConvertUtils.asString(Collections.singletonMap("key", "val"));
     }
 
     @RequestMapping(value = "/", method = {RequestMethod.POST, RequestMethod.GET})

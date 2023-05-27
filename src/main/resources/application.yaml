@@ -8,8 +8,8 @@
 spring:
   profiles:
     # java -jar app.jar --spring.profiles.active=prod
-    # jar包命令行高于虚拟机参数指定高于yaml配置参数指定
-    active: prod
+    # jar 包命令行高于虚拟机参数指定高于 yaml 配置参数指定
+    active: dev
 server:
   port: 8080
 dev:
