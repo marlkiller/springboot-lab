@@ -8,23 +8,23 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.querydsl.QSort;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.sql.DataSource;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class UserRepositoryTest extends SpringbootLabApplicationTests {
+    @Resource
+    private DataSource dataSource;
     @Resource
     private UserRepository userRepository;
 
     @Test
     @Transactional(readOnly = true)
-    void contextLoads() {
+    void contextLoads() throws SQLException {
         List<User> all = userRepository.findAll();
         System.out.println(all);
         // System.out.println(userRepository.findById(22222222L));
@@ -64,6 +64,8 @@ class UserRepositoryTest extends SpringbootLabApplicationTests {
         Example<User> example = Example.of(userExample, matcher);
         List<User> users = userRepository.findAll(example);
         System.out.println(users);
+
+        System.out.println(dataSource.getConnection());
 
 
     }
