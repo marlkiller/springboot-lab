@@ -19,15 +19,19 @@
     <dependencies>
         <!-- mvn dependency:tree -->
         <!-- Provides transitive vulnerable dependency maven:org.yaml:snakeyaml:1.33 -->
+        <!-- CVE-2022-41854 6.5 Out-of-bounds Write vulnerability with medium severity found -->
+        <!-- CVE-2022-1471 9.8 Deserialization of Untrusted Data vulnerability with high severity found -->
+        <!-- false positive -->
+        <!-- https://bitbucket.org/snakeyaml/snakeyaml/wiki/CVE-2022-1471 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
-            <!-- <exclusions>
-                <exclusion>
-                    <groupId>org.yaml</groupId>
-                    <artifactId>snakeyaml</artifactId>
-                </exclusion>
-            </exclusions> -->
+            <!-- <exclusions> -->
+            <!--     <exclusion> -->
+            <!--         <groupId>org.yaml</groupId> -->
+            <!--         <artifactId>snakeyaml</artifactId> -->
+            <!--     </exclusion> -->
+            <!-- </exclusions> -->
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -62,15 +66,11 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    <!-- <dependencyManagement> -->
-    <!--     <dependencies> -->
-    <!--         <dependency> -->
-    <!--             <groupId>org.yaml</groupId> -->
-    <!--             <artifactId>snakeyaml</artifactId> -->
-    <!--             <version>2.0</version> -->
-    <!--         </dependency> -->
-    <!--     </dependencies> -->
-    <!-- </dependencyManagement> -->
+    <dependencyManagement>
+        <dependencies>
+            
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>
