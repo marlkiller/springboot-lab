@@ -4,8 +4,8 @@ import com.example.springbootlab.common.config.MyProperties;
 import com.example.springbootlab.common.util.JSONConvertUtils;
 import com.example.springbootlab.common.vo.Greeting;
 import jakarta.annotation.Resource;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +19,7 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 @RestController
 public class HelloController {
-    private static final Log logger = LogFactory.getLog(HelloController.class);
+    private static final Logger logger = LoggerFactory.getLogger(HelloController.class);
 
     @Resource
     private MyProperties myProperties;

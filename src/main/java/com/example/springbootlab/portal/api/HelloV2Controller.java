@@ -1,9 +1,11 @@
 package com.example.springbootlab.portal.api;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.example.springbootlab.common.core.MyException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -12,11 +14,20 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class HelloV2Controller {
-    private static final Log logger = LogFactory.getLog(HelloV2Controller.class);
+    private static final Logger logger = LoggerFactory.getLogger(HelloV2Controller.class);
 
 
     @Value(value = "${spring.config.activate.on-profile}")
     private String profile;
+
+    @GetMapping("/hello/ex/{type}")
+    public Object helloEx(@PathVariable(value = "type") String type) throws Exception {
+        switch (type) {
+            case "1" -> throw new Exception("Exception");
+            case "2" -> throw new MyException("MyException");
+        }
+        return new Object();
+    }
 
 
     @GetMapping("/env/v2")
