@@ -43,6 +43,14 @@
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>2.9.8</version>
         </dependency>
+        
+        <!-- https://docs.spring.io/spring-data/mongodb/docs/current/reference/html/ -->
+        <!-- https://docs.spring.io/spring-data/mongodb/docs/4.1.x/reference/html/ -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+
 
         <dependency>
             <!-- https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#using.devtools -->
