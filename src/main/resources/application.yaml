@@ -16,7 +16,16 @@ dev:
   config:
     level: 100
 
-
+# http://127.0.0.1:8080/swagger-ui.html
+# http://127.0.0.1:8080/v3/api-docs
+# http://127.0.0.1:8080/v3/api-docs.yaml
+# swagger-ui custom path
+#springdoc:
+#  swagger-ui:
+#    path: /swagger-ui.html
+#  api-docs:
+#    path: /api-docs
+    
 logging:
   # https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#features.logging.custom-log-configuration
   # 二者不能同时使用，如若同时使用，则只有 logging.file 生效

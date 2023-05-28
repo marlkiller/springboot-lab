@@ -3,6 +3,8 @@ package com.example.springbootlab.portal.api;
 import com.example.springbootlab.common.config.MyProperties;
 import com.example.springbootlab.common.util.JSONConvertUtils;
 import com.example.springbootlab.common.vo.Greeting;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +34,18 @@ public class HelloController {
 
     /**
      * curl --location 'http://127.0.0.1:8080/greeting?name=123'
+     * https://github.com/swagger-api/swagger-core/wiki/Swagger-2.X---Annotations
+     * Here are some useful annotations:
+     *
+     * @Tag
+     * @Operation
+     * @Parameters and @Parameter
+     * @Schema
+     * @Hidden or @Parameter(hidden = true) or @Operation(hidden = true)
+     * @ApiResponses and @ApiResponse
      */
+    @Tag(name = "Swagger tag name ")
+    @Operation(description = "returns a value")
     @GetMapping("/env")
     public String env() {
         /* @GetMapping/@PostMapping/@PutMapping/@DeleteMapping
