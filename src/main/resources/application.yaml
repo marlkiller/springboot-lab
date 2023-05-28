@@ -15,7 +15,9 @@ server:
 dev:
   config:
     level: 100
-
+third:
+  api: http://127.0.0.1:8000
+  apikey: 123456789
 
 logging:
   # https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#features.logging.custom-log-configuration
