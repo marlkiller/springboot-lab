@@ -10,6 +10,14 @@ spring:
     # java -jar app.jar --spring.profiles.active=prod
     # jar 包命令行高于虚拟机参数指定高于 yaml 配置参数指定
     active: dev
+  data:
+    redis:
+      database: 0
+      # username:
+      host: 127.0.0.1
+      port: 6379
+      password: 363636
+      
 server:
   port: 8080
 dev:

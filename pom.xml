@@ -43,7 +43,13 @@
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>2.9.8</version>
         </dependency>
-
+        
+        <!-- https://docs.spring.io/spring-data/redis/docs/3.1.x/reference/html/#preface -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        
         <dependency>
             <!-- https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#using.devtools -->
             <!-- Build > Compiler > Build project automatically [Enable] -->
