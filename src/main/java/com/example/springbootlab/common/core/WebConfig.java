@@ -13,8 +13,8 @@ public class WebConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addInterceptors(InterceptorRegistry registry) {
-                registry.addInterceptor(new GlobalInterceptor())
-                        .addPathPatterns("/**"); // 指定拦截器要拦截的路径
+                registry.addInterceptor(new GlobalInterceptor()).addPathPatterns("/**"); // 指定拦截器要拦截的路径
+                registry.addInterceptor(new UserAPIInterceptor()).addPathPatterns("/user-api/**"); // 指定拦截器要拦截的路径
             }
         };
     }
