@@ -1,16 +1,24 @@
 package com.example.springbootlab;
 
 import com.example.springbootlab.common.mq.MQConfig;
+import com.example.springbootlab.common.mq.RabbitMQReceiver;
 import org.junit.jupiter.api.Test;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.nio.charset.StandardCharsets;
 
 class RabbitMQTests extends SpringbootLabApplicationTests {
 
+
+    // MockBean 来排除掉 Springboot 启动生成对 bean
+    // 防止测试类,生成 MQ 服务端
+    @MockBean
+    private RabbitMQReceiver rabbitMQReceiver;
+    
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
