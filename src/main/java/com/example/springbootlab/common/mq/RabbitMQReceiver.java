@@ -68,4 +68,10 @@ public class RabbitMQReceiver {
     public void topicReceive2(String message) {
         System.out.println("topicReceive 2 received  message : " + message);
     }
+
+    public String methodWithParam(String message) {
+        return "ret: " + message;
+    }
+    public void methodWithoutParam() {
+    }
 }

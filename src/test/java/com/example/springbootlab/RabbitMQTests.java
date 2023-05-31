@@ -2,6 +2,7 @@ package com.example.springbootlab;
 
 import com.example.springbootlab.common.mq.MQConfig;
 import com.example.springbootlab.common.mq.RabbitMQReceiver;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
@@ -10,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.nio.charset.StandardCharsets;
+
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.when;
 
 class RabbitMQTests extends SpringbootLabApplicationTests {
 
@@ -21,6 +25,15 @@ class RabbitMQTests extends SpringbootLabApplicationTests {
     
     @Autowired
     private RabbitTemplate rabbitTemplate;
+    
+    @BeforeEach
+    public void before() {
+        when(rabbitMQReceiver.methodWithParam("参数")).thenReturn("mock : 方法的返回值");
+        System.out.println(rabbitMQReceiver.methodWithParam("参数"));
+
+        doNothing().when(rabbitMQReceiver).methodWithoutParam();
+        rabbitMQReceiver.methodWithoutParam();
+    }
 
     // Sample queue 直连模式
     @Test
