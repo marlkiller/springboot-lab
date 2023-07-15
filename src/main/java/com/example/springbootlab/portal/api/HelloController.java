@@ -1,17 +1,23 @@
 package com.example.springbootlab.portal.api;
 
 import com.example.springbootlab.common.config.MyProperties;
+import com.example.springbootlab.common.constant.ResultCode;
+import com.example.springbootlab.common.dto.PageForm;
 import com.example.springbootlab.common.util.JSONConvertUtils;
 import com.example.springbootlab.common.vo.Greeting;
+import com.example.springbootlab.common.vo.PageVo;
+import com.example.springbootlab.common.vo.ResultVo;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.function.Function;
 
 /**
  * @author artemis
@@ -108,4 +114,47 @@ public class HelloController {
         return "Greetings from Spring Boot! " + myProperties.getLevel();
     }
 
+    @GetMapping("/result_vo/success")
+    public ResultVo<Object> success() {
+        return ResultVo.ok();
+    }
+
+    @GetMapping("/result_vo/fail")
+    public ResultVo<Object> fail() {
+        return ResultVo.fail(ResultCode.RC500);
+    }
+
+    @GetMapping("/page")
+    public ResultVo<Object> page() {
+
+        PageForm pageForm = new PageForm();
+        pageForm.setPageNumber(2);
+        pageForm.setPageSize(100);
+
+
+        // mysql 查询中,会用到 currentPage
+        // pageForm.calcCurrent()
+
+        PageVo<Greeting> pageVo = PageVo.of(
+                pageForm,
+                Arrays.asList(
+                        new Greeting(1, "id_1"),
+                        new Greeting(2, "id_2")
+                ),
+                1000
+
+        );
+
+        // return ResultVo.ok(pageVo);
+        // 这里可以抽取一个 Convert 方法, 过滤某些关键字
+        return ResultVo.ok(pageVo.convert(new Function<Greeting, Greeting>() {
+            @Override
+            public Greeting apply(Greeting greeting) {
+                if (greeting.id() == 1) {
+                    return new Greeting(1000, "mask");
+                }
+                return greeting;
+            }
+        }));
+    }
 }
