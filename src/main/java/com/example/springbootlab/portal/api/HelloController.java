@@ -8,6 +8,8 @@ import com.example.springbootlab.common.vo.Greeting;
 import com.example.springbootlab.common.vo.PageVo;
 import com.example.springbootlab.common.vo.ResultVo;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -55,6 +57,21 @@ public class HelloController {
         logger.warn("this is warn log");
         logger.error("this is error log");
         return profile;
+    }
+
+    @GetMapping("/cookie/req1")
+    public Map cookieReq1(HttpServletResponse response) {
+
+        Cookie cookie = new Cookie("cookie_k", "val_1");
+        Cookie cookie2 = new Cookie("cookie_k2", "val_2");
+        response.addCookie(cookie);
+        response.addCookie(cookie2);
+        return Collections.singletonMap("cookie_k", "cookie_k2");
+    }
+
+    @GetMapping("/cookie/req2")
+    public Map cookieReq2(@CookieValue(value = "cookie_k") String val, @CookieValue(value = "cookie_k2") String val2) {
+        return Collections.singletonMap(val, val2);
     }
 
     /**
