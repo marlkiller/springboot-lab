@@ -38,6 +38,13 @@ public class HelloController {
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
 
+    @GetMapping("/num")
+    public void num(String num) throws InterruptedException {
+        logger.info("num/counter :{}/{}", num, counter.incrementAndGet());
+        Thread.sleep(2000000);
+    }
+    
+
     /**
      * curl --location 'http://127.0.0.1:8080/greeting?name=123'
      */
