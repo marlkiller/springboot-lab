@@ -12,6 +12,17 @@ spring:
     active: dev
 server:
   port: 8080
+  # https://zhuanlan.zhihu.com/p/644043327
+  tomcat:
+    # 最大连接数0
+    max-connections: 8192
+    # 最大等待数
+    accept-count: 100
+    threads:
+      # 最大线程
+      max: 200
+      # 最小线程数
+      min-spare: 10
 dev:
   config:
     level: 100

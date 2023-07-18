@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.Function;
 
@@ -40,8 +41,9 @@ public class HelloController {
 
     @GetMapping("/num")
     public void num(String num) throws InterruptedException {
-        logger.info("num/counter :{}/{}", num, counter.incrementAndGet());
-        Thread.sleep(2000000);
+        // num/counter :http-nio-8080-exec-200 : 200/200 
+        logger.info("thread : num/counter :{} : {}/{}", Thread.currentThread().getName(), num, counter.incrementAndGet());
+        TimeUnit.HOURS.sleep(1);
     }
     
 
