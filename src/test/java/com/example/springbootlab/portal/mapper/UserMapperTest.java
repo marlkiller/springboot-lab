@@ -36,7 +36,7 @@ class UserMapperTest extends SpringbootLabApplicationTests {
         // 原生 mybatis sql xml
         System.out.println(userMapper.selectRawXML());
         
-        // page 分页
+        // page 分页 依赖 Bean MybatisPlusInterceptor
         // 分页查询总共发出了2次SQL，一次查总记录数，一次查具体数据。
         // 若希望不查总记录数，仅查分页结果。可以通过Page的重载构造函数，指定isSearchCount为false即可
         LambdaQueryWrapper<User> pageWrapper = new LambdaQueryWrapper<>();
