@@ -52,6 +52,38 @@ class UserMapperTest extends SpringbootLabApplicationTests {
         List<User> records = userPage.getRecords();
         records.forEach(System.out::println);
         
+        // TODO JOIN
+        // <!-- join 查询 (mapper 继承 MPJBaseMapper) -->
+        //         <dependency>
+        //             <groupId>com.github.yulichang</groupId>
+        //             <artifactId>mybatis-plus-join</artifactId>
+        //             <version>1.4.6</version>
+        //         </dependency>
+        // public interface BucketMapper extends MPJBaseMapper<Bucket> {
+        // 
+        // }
+        // MPJLambdaWrapper<Bucket> wrapper = JoinWrappers.lambda(Bucket.class);
+        //         wrapper.selectAll(Bucket.class);
+        // wrapper.selectAs(Ossserver::getName, BucketVo::getOssServerName);
+        //         wrapper.selectAs(Ossserver::getVendor, BucketVo::getVendor);
+        //         wrapper.selectAs(PublicRegion::getName, BucketVo::getPublicCloudRegionName);
+        //         wrapper.selectAs(Enterprise::getName, BucketVo::getEnterpriseName);
+        //         wrapper.selectAs(Region::getName, BucketVo::getRegionName);
+        //         // 关联表
+        //         wrapper.innerJoin(Ossserver.class, Ossserver::getId, Bucket::getOssServerId);
+        //         wrapper.leftJoin(PublicRegion.class, PublicRegion::getUuid, Bucket::getPublicCloudRegion);
+        //         wrapper.leftJoin(Enterprise.class, Enterprise::getId, Bucket::getEnterpriseId);
+        //         wrapper.leftJoin(Region.class, Region::getId, Ossserver::getRegionid);
+        // 
+        //         // 过滤条件
+        //         buildQueryWrapper(wrapper, req);
+        // 
+        //         // 分页
+        //         Page<BucketVo> bucketPage = bucketMapper.selectJoinPage(
+        //                 new Page<>(req.getPageNo(), req.getPageSize()),
+        //                 BucketVo.class,
+        //                 wrapper
+        //         );
         // TODO AR模式 , ActiveRecord
 
 
