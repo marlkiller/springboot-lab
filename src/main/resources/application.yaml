@@ -17,7 +17,7 @@ spring:
     # MySQL6 : com.mysql.cj.jdbc.Driver。
     # driver-class-name: com.mysql.jdbc.Driver
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: "jdbc:mysql://100.96.33.90:3306/db_dev"
+    url: "jdbc:mysql://127.0.0.1:3306/db_dev"
     username: "root"
     password: "363636"
 
