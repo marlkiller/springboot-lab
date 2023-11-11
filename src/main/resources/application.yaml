@@ -20,6 +20,47 @@ spring:
     url: "jdbc:mysql://127.0.0.1:3306/db_dev"
     username: "root"
     password: "363636"
+    
+    # 连接池(默认: hikari)
+    # type: com.zaxxer.hikari.HikariDataSource
+    # Druid
+    # hikari:
+      # pool-name: "hikari-name"
+    
+    # Druid
+    # https://github.com/alibaba/druid/tree/master/druid-spring-boot-starter
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      name: "druid-name"
+      # Spring 监控( 依赖 spring-boot-starter-aop),多个用逗号分割
+      # 需要 手动 配置 spring.aop.auto= false
+      aop-patterns: "com.example.springbootlab.*.api.*"
+      filter:
+        stat:
+          # SQL 监控配置
+          enabled: true
+        wall:
+          # SQL 防火墙配置
+          enabled: true
+        slf4j:
+          # Druid 日志配置
+          enabled: true
+      web-stat-filter:
+        enabled: true
+        # 排除路径
+        exclusions: .js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*
+        # 开启session统计
+        session-stat-enable: true
+        
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        login-username: druid
+        login-password: druid
+  aop:
+    auto: false
+
+
 
 # sql 输出
 mybatis-plus:

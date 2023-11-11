@@ -1,14 +1,18 @@
 package com.example.springbootlab.portal.api;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.example.springbootlab.common.config.MyProperties;
 import com.example.springbootlab.common.util.JSONConvertUtils;
 import com.example.springbootlab.common.vo.Greeting;
+import com.example.springbootlab.portal.mapper.UserMapper;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import javax.sql.DataSource;
 import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
@@ -26,6 +30,9 @@ public class HelloController {
 
     @Value(value = "${spring.config.activate.on-profile}")
     private String profile;
+
+    @Resource
+    private DataSource dataSource;
 
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
@@ -108,4 +115,11 @@ public class HelloController {
         return "Greetings from Spring Boot! " + myProperties.getLevel();
     }
 
+    @Autowired
+    private UserMapper userMapper;
+    @GetMapping("/dataSource")
+    public Object query() {
+        userMapper.selectList(new LambdaQueryWrapper<>());
+        return Collections.singletonMap("datasource", dataSource.getClass());
+    }
 }
