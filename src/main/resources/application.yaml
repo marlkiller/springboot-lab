@@ -34,6 +34,7 @@ spring:
       name: "druid-name"
       # Spring 监控( 依赖 spring-boot-starter-aop),多个用逗号分割
       # 需要 手动 配置 spring.aop.auto= false
+      # https://github.com/alibaba/druid/issues/4455
       aop-patterns: "com.example.springbootlab.*.api.*"
       filter:
         stat:
