@@ -23,9 +23,6 @@ server:
       max: 200
       # 最小线程数
       min-spare: 10
-dev:
-  config:
-    level: 100
 
 
 logging:
@@ -48,8 +45,14 @@ spring:
   config:
     activate:
       on-profile: dev
+dev:
+  config:
+    level: 100
 ---
 spring:
   config:
     activate:
       on-profile: prod
+dev:
+  config:
+    level: 200
