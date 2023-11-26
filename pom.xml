@@ -88,10 +88,10 @@
             </plugin>
             <!--打包为 native 程序 -->
             <!--mvn -Pnative -DskipTests clean native:compile -->
-            <!--<plugin>
+            <plugin>
                 <groupId>org.graalvm.buildtools</groupId>
                 <artifactId>native-maven-plugin</artifactId>
-            </plugin>-->
+            </plugin>
 
         </plugins>
 
