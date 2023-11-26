@@ -14,7 +14,7 @@ spring:
   # https://zhuanlan.zhihu.com/p/145336656 
   rabbitmq:
     # IP
-    host: 172.20.163.21
+    host: 127.0.0.1
     # 端口
     port: 5672
     # 用户名
