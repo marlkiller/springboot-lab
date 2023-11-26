@@ -41,12 +41,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>2.14.2</version>
-        </dependency>
-
-        <dependency>
             <!-- https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#using.devtools -->
             <!-- Build > Compiler > Build project automatically [Enable] -->
             <!-- Advanced Settings > Compiler > Allow auto-make to start even if developed application is currently... [Enable] -->
