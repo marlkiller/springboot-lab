@@ -11,13 +11,13 @@ import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 public class HttpExchangeConfiguration {
     @Value(value = "${third.api}")
     private String thirdApi;
-    
+
     @Value(value = "${third.apikey}")
     private String apikey;
     @Bean
     HttpExchangeThirdAPI httpExchangeThirdAPI() {
         WebClient client = WebClient.builder().defaultHeader("defaultHeader",apikey).baseUrl(thirdApi).build();
-        HttpServiceProxyFactory factory = HttpServiceProxyFactory.builder(WebClientAdapter.forClient(client)).build();
+        HttpServiceProxyFactory factory = HttpServiceProxyFactory.builderFor(WebClientAdapter.create(client)).build();
         return factory.createClient(HttpExchangeThirdAPI.class);
     }
 
