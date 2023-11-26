@@ -12,11 +12,11 @@ spring:
     active: dev
   data:
     mongodb:
-      uri: mongodb://root:363636@100.96.33.90:27017/admin
-      host: 100.96.33.90
+      uri: mongodb://admin:363636@127.0.0.1:27017/admin
+      host: 127.0.0.1
       port: 27017
       database: admin
-      username: root
+      username: admin 
       password: 363636
 server:
   port: 8080
