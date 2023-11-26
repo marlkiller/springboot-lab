@@ -1,13 +1,16 @@
-FROM eclipse-temurin:20-jre as builder
+FROM eclipse-temurin:21-jre as builder
 WORKDIR application
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} application.jar
-RUN java -Djarmode=layertools -jar application.jar extract
+# 通过 jarmode 系统属性来提取 jar 包中的层。
+RUN java -Djarmode=layertools -jar application.jar extract  
+#ENTRYPOINT ["java","${JAVA_OPTS}","-jar","application.jar"]
 
-FROM eclipse-temurin:20-jre
+
+FROM eclipse-temurin:21-jre
 WORKDIR application
 COPY --from=builder application/dependencies/ ./
 COPY --from=builder application/spring-boot-loader/ ./
 COPY --from=builder application/snapshot-dependencies/ ./
 COPY --from=builder application/application/ ./
-ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher"]
+ENTRYPOINT ["java", "org.springframework.boot.loader.launch.JarLauncher"]
