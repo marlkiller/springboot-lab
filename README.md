@@ -4,8 +4,8 @@
 
 [//]: # (mvn dependency:tree)
 - Maven : >= 3.6.3
-- JDK : >= 20
-- SpringBoot : = 3.1.0
+- JDK : >= 21
+- SpringBoot : = 3.2.0
 - tomcat : = 10.1.8
 
 ## Build 
@@ -17,25 +17,25 @@ mvn -DskipTests=true package
 ### Native
 ```shell
 # download graalvm : https://www.graalvm.org/downloads/
-wget https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-22.3.2/graalvm-ce-java17-darwin-amd64-22.3.2.tar.gz
-gu install native-image
+## graalvm 21 已经集成 native-image, 并且废弃了 gu 命令,旧版本需要下面命令安装 native-image  
+## gu install native-image
 ```
 ```
-openjdk version "17.0.7" 2023-04-18
-OpenJDK Runtime Environment GraalVM CE 22.3.2 (build 17.0.7+7-jvmci-22.3-b18)
-OpenJDK 64-Bit Server VM GraalVM CE 22.3.2 (build 17.0.7+7-jvmci-22.3-b18, mixed mode, sharing)
+java version "21.0.1" 2023-10-17
+Java(TM) SE Runtime Environment Oracle GraalVM 21.0.1+12.1 (build 21.0.1+12-jvmci-23.1-b19)
+Java HotSpot(TM) 64-Bit Server VM Oracle GraalVM 21.0.1+12.1 (build 21.0.1+12-jvmci-23.1-b19, mixed mode, sharing)
 ```
 
 pom.xml
 ```xml
 <!--  spring-boot-devtools dependency is not supported -->
 <properties>
-    <java.version>17</java.version>
+    <java.version>21</java.version>
 </properties>
 ```
 ```shell
 # https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#native-image.developing-your-first-application.native-build-tools.mavenhttps://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#native-image.developing-your-first-application.native-build-tools.maven
-mvn -Pnative native:compile
+mvn -Pnative -DskipTests clean native:compile
 ```
 
 ### Docker image
